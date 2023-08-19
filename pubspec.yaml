@@ -40,6 +40,11 @@ dependencies:
   firebase_core: ^2.15.0
   cloud_firestore: ^4.8.4
   shared_preferences: ^2.2.0
+  qr_flutter: ^4.0.0
+  flutter_barcode_scanner: ^2.0.0
+  share: ^2.0.4
+  path_provider: ^2.0.13
+
 
 dev_dependencies:
   flutter_test:
