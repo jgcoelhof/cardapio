@@ -1,6 +1,8 @@
 import 'package:cardapio/pages/auth/login_page.dart';
 import 'package:cardapio/pages/auth/register_page.dart';
 import 'package:cardapio/pages/cardapio_page.dart';
+import 'package:cardapio/pages/create_product_page.dart';
+import 'package:cardapio/pages/product_page.dart';
 import 'package:cardapio/pages/qrcode/qrcode_page.dart';
 import 'package:cardapio/shared/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -58,7 +60,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
-      home: _isSignedIn ? const QrCodePage() : const LoginPage(),//home page se logado e login page se não estiver logado
+      home: _isSignedIn ? const CardapioPage() : const CardapioPage(),//home page se logado e login page se não estiver logado
     );
   }
 }

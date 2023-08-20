@@ -1,944 +1,111 @@
 import 'package:flutter/material.dart';
-import '../widgets/widgets.dart';
-import 'create_product_page.dart';
+import 'dart:io';
 
-class CardapioPage extends StatelessWidget {
+class CardapioPage extends StatefulWidget {
   const CardapioPage({Key? key}) : super(key: key);
+
+  @override
+  State<CardapioPage> createState() => _CardapioPageState();
+}
+
+class _CardapioPageState extends State<CardapioPage> {
+  File? _image;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 75,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.arrow_back_ios_new_outlined),
+              onPressed: () {},
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
         backgroundColor: const Color(0xffC7411B),
-        title: const Center(
-          child: Text(
-            "Cardápio Web",
-            style: TextStyle(
-              fontFamily: 'FigTree',
-              fontSize: 24,
-              color: Color(0xffFFFFFF),
-              fontWeight: FontWeight.w600,
-            ),
+        title: const Text(
+          "Cardápio web",
+          style: TextStyle(
+            fontSize: 24,
+            color: Color(0xffFFFFFF),
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
-      body: Stack(
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 0.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 26),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 23.0),
-                      child: Text(
-                        "Olá, boa noite!",
-                        style: TextStyle(
-                          fontFamily: 'FigTree',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 24,
-                          color: Color(0xffC7411B),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 23.0),
-                      child: Container(
-                        width: 58,
-                        height: 56,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffC7411B),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Transform.rotate(
-                          angle: 3.14159 / 2,
-                          child: const Icon(
-                            Icons.search,
-                            color: Color(0xffFFFBF6),
-                            size: 30.5,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                const Padding(
-                  padding: EdgeInsets.only(left: 23.0),
-                  child: Text(
-                    "Cardápio",
-                    style: TextStyle(
-                      fontFamily: 'FigTree',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20,
-                      color: Color(0xffC7411B),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-
-                // CARROSSEL DE TIPOS DE REFEIÇÕES - APENAS UMA LISTVIEW
-                Container(
-                  height: 56,
-                  width: 1000, // Defina a altura desejada para a ListView
-                  margin: const EdgeInsets.only(left: 23.0),
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      Container(
-                        width: 131,
-                        height: 56,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffC7411B),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 37.5),
-                          child: Text(
-                            "Todos",
-                            style: TextStyle(
-                              fontFamily: 'FigTree',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              color: Color(0xffFFFBF6),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 17,
-                      ),
-                      Container(
-                        width: 131,
-                        height: 56,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffFFB987),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 27),
-                          child: Text(
-                            "Petiscos",
-                            style: TextStyle(
-                              fontFamily: 'FigTree',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 20,
-                              color: Color(0xffC7411B),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 17,
-                      ),
-                      Container(
-                        width: 131,
-                        height: 56,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffFFB987),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 17.0, horizontal: 15),
-                          child: Text(
-                            "Sobremesas",
-                            style: TextStyle(
-                              fontFamily: 'FigTree',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                              color: Color(0xffC7411B),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 17,
-                      ),
-                      Container(
-                        width: 131,
-                        height: 56,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffFFB987),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 17.0, horizontal: 36),
-                          child: Text(
-                            "Massas",
-                            style: TextStyle(
-                              fontFamily: 'FigTree',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                              color: Color(0xffC7411B),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 17,
-                      ),
-                      Container(
-                        width: 131,
-                        height: 56,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffFFB987),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 17.0, horizontal: 35),
-                          child: Text(
-                            "Bebidas",
-                            style: TextStyle(
-                              fontFamily: 'FigTree',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 17,
-                              color: Color(0xffC7411B),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(
-                  height: 30,
-                ),
-
-                const Padding(
-                  padding: EdgeInsets.only(left: 23.0),
-                  child: Text(
-                    "Todos",
-                    style: TextStyle(
-                      fontFamily: 'FigTree',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xffC7411B),
-                    ),
-                  ),
-                ),
-
-                const SizedBox(
-                  height: 16,
-                ),
-
-                Flexible(
-                  child: ListView(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(horizontal: 23),
-                    scrollDirection: Axis.vertical,
-                    children: <Widget>[
-                      Container(
-                        width: 344,
-                        height: 156,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffFFEFDC),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(
-                                  left: 8, top: 8, bottom: 8),
-                              width: 144,
-                              height: 140,
-                              decoration: BoxDecoration(
-                                color: const Color(0xffFFDCBD),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.only(
-                                    left: 117.0, top: 8, right: 8, bottom: 113),
-                                child: Icon(
-                                  Icons.circle,
-                                  size: 19,
-                                  color: Color(0xffE45E3A),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: const [
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 11, top: 12, bottom: 8),
-                                        child: Text(
-                                          "001",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 112),
-                                        child: Icon(
-                                          Icons.access_time_rounded,
-                                          size: 20.95,
-                                          color: Color(0xffC7411B),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 4.08),
-                                        child: Text(
-                                          "15m",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 11.0, right: 74, bottom: 10),
-                                      child: Text(
-                                        "Hambúrguer X",
-                                        style: TextStyle(
-                                          fontFamily: 'FigTree',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xffC7411B),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 11, right: 8, bottom: 25),
-                                    child: Text(
-                                      "Pão de brioche torrado, carne\nbovina grelhada, cheddar\nalface, tomate e cebola roxa.",
-                                      style: TextStyle(
-                                        fontFamily: 'FigTree',
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xffC7411B),
-                                      ),
-                                    ),
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 11.0, right: 86, bottom: 15),
-                                        child: Text(
-                                          "R\$ 19,90",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: 11, right: 5),
-                                        child: Icon(
-                                          Icons.star,
-                                          size: 21,
-                                          color: Color(0xffC7411B),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: 11, right: 11),
-                                        child: Text(
-                                          "4,5",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Container(
-                        width: 344,
-                        height: 156,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffFFEFDC),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                                margin: const EdgeInsets.only(
-                                    left: 8, top: 8, bottom: 8),
-                                width: 144,
-                                height: 140,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xffFFDCBD),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Column(
-                                  children: const [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 117.0,
-                                          top: 8,
-                                          right: 8,
-                                          bottom: 6),
-                                      child: Icon(
-                                        Icons.circle,
-                                        size: 19,
-                                        color: Color(0xffE45E3A),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 117.0, right: 8, bottom: 88),
-                                      child: Icon(
-                                        Icons.circle,
-                                        size: 19,
-                                        color: Color(0xffE45E3A),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 11, top: 12, bottom: 8),
-                                    child: Text(
-                                      "002",
-                                      style: TextStyle(
-                                        fontFamily: 'FigTree',
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xffC7411B),
-                                      ),
-                                    ),
-                                  ),
-                                  const Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 11.0, right: 74, bottom: 10),
-                                      child: Text(
-                                        "Hambúrguer Y",
-                                        style: TextStyle(
-                                          fontFamily: 'FigTree',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xffC7411B),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 11, right: 8, bottom: 25),
-                                    child: Text(
-                                      "Pão de brioche torrado, carne\nbovina grelhada, cheddar\nalface, tomate e cebola roxa.",
-                                      style: TextStyle(
-                                        fontFamily: 'FigTree',
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xffC7411B),
-                                      ),
-                                    ),
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 11.0, right: 84, bottom: 15),
-                                        child: Text(
-                                          "R\$ 22,90",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: 11, right: 5),
-                                        child: Icon(
-                                          Icons.star,
-                                          size: 21,
-                                          color: Color(0xffC7411B),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: 11, right: 11),
-                                        child: Text(
-                                          "4,0",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Container(
-                        width: 344,
-                        height: 156,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffFFEFDC),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(
-                                  left: 8, top: 8, bottom: 8),
-                              width: 144,
-                              height: 140,
-                              decoration: BoxDecoration(
-                                color: const Color(0xffFFDCBD),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.only(
-                                    left: 117.0, top: 8, right: 8, bottom: 113),
-                                child: Icon(
-                                  Icons.circle,
-                                  size: 19,
-                                  color: Color(0xffE45E3A),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 11, top: 12, bottom: 8),
-                                    child: Text(
-                                      "003",
-                                      style: TextStyle(
-                                        fontFamily: 'FigTree',
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xffC7411B),
-                                      ),
-                                    ),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 11.0, right: 74, bottom: 10),
-                                    child: Expanded(
-                                      child: Text(
-                                        "Hambúrguer Z",
-                                        style: TextStyle(
-                                          fontFamily: 'FigTree',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xffC7411B),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 11, right: 8, bottom: 24),
-                                    child: Expanded(
-                                      child: Text(
-                                        "Pão de brioche torrado, carne\nbovina grelhada, cheddar\nalface, tomate e cebola roxa.",
-                                        style: TextStyle(
-                                          fontFamily: 'FigTree',
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color(0xffC7411B),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 11.0, right: 84, bottom: 15),
-                                        child: Text(
-                                          "R\$ 25,90",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: 11, right: 5),
-                                        child: Icon(
-                                          Icons.star,
-                                          size: 21,
-                                          color: Color(0xffC7411B),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: 11, right: 11),
-                                        child: Text(
-                                          "4,0",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Container(
-                        width: 344,
-                        height: 156,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffFFEFDC),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(
-                                  left: 8, top: 8, bottom: 8),
-                              width: 144,
-                              height: 140,
-                              decoration: BoxDecoration(
-                                color: const Color(0xffFFDCBD),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.only(
-                                    left: 117.0, top: 8, right: 8, bottom: 113),
-                                child: Icon(
-                                  Icons.circle,
-                                  size: 19,
-                                  color: Color(0xffE45E3A),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: const [
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 11, top: 12, bottom: 8),
-                                        child: Text(
-                                          "001",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 112),
-                                        child: Icon(
-                                          Icons.access_time_rounded,
-                                          size: 20.95,
-                                          color: Color(0xffC7411B),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 4.08),
-                                        child: Text(
-                                          "15m",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 11.0, right: 74, bottom: 10),
-                                      child: Text(
-                                        "Hambúrguer X",
-                                        style: TextStyle(
-                                          fontFamily: 'FigTree',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xffC7411B),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 11, right: 8, bottom: 25),
-                                    child: Text(
-                                      "Pão de brioche torrado, carne\nbovina grelhada, cheddar\nalface, tomate e cebola roxa.",
-                                      style: TextStyle(
-                                        fontFamily: 'FigTree',
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xffC7411B),
-                                      ),
-                                    ),
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 11.0, right: 86, bottom: 15),
-                                        child: Text(
-                                          "R\$ 19,90",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: 11, right: 5),
-                                        child: Icon(
-                                          Icons.star,
-                                          size: 21,
-                                          color: Color(0xffC7411B),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: 11, right: 11),
-                                        child: Text(
-                                          "4,5",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Container(
-                        width: 344,
-                        height: 156,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffFFEFDC),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                                margin: const EdgeInsets.only(
-                                    left: 8, top: 8, bottom: 8),
-                                width: 144,
-                                height: 140,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xffFFDCBD),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Column(
-                                  children: const [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 117.0,
-                                          top: 8,
-                                          right: 8,
-                                          bottom: 6),
-                                      child: Icon(
-                                        Icons.circle,
-                                        size: 19,
-                                        color: Color(0xffE45E3A),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 117.0, right: 8, bottom: 88),
-                                      child: Icon(
-                                        Icons.circle,
-                                        size: 19,
-                                        color: Color(0xffE45E3A),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 11, top: 12, bottom: 8),
-                                    child: Text(
-                                      "002",
-                                      style: TextStyle(
-                                        fontFamily: 'FigTree',
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xffC7411B),
-                                      ),
-                                    ),
-                                  ),
-                                  const Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 11.0, right: 74, bottom: 10),
-                                      child: Text(
-                                        "Hambúrguer Y",
-                                        style: TextStyle(
-                                          fontFamily: 'FigTree',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xffC7411B),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 11, right: 8, bottom: 25),
-                                    child: Text(
-                                      "Pão de brioche torrado, carne\nbovina grelhada, cheddar\nalface, tomate e cebola roxa.",
-                                      style: TextStyle(
-                                        fontFamily: 'FigTree',
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xffC7411B),
-                                      ),
-                                    ),
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 11.0, right: 84, bottom: 15),
-                                        child: Text(
-                                          "R\$ 22,90",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: 11, right: 5),
-                                        child: Icon(
-                                          Icons.star,
-                                          size: 21,
-                                          color: Color(0xffC7411B),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: 11, right: 11),
-                                        child: Text(
-                                          "4,0",
-                                          style: TextStyle(
-                                            fontFamily: 'FigTree',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffC7411B),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-                  ),
-                ),
-              ],
+          const Padding(
+            padding: EdgeInsets.only(top: 32.0, left: 24),
+            child: Text(
+              "Novo item",
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 24,
+                color: Color(0xffC7411B),
+              ),
             ),
           ),
-
-          // botão flutuante
-          Positioned(
-            bottom: 30,
-            right: 30,
-            width: 101,
-            height: 101,
-            child: FloatingActionButton(
-              backgroundColor: const Color(0xffFFB987),
-              onPressed: () {
-                nextScreenReplace(context, const CreateProductPage());
-              },
-              child: const DecoratedBox(
-                child: Icon(
-                  Icons.add,
-                  size: 50,
-                ),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
+          ScrollbarTheme(
+            data: ScrollbarThemeData(
+              thumbColor: MaterialStateProperty.all<Color>(const Color(
+                  0xffFFB987)), // Cor do polegar da barra de rolagem
+            ),
+            child: Flexible(
+              child: Container(
+                height: 548,
+                child: Scrollbar(
+                  thumbVisibility: true,
+                  thickness: 6.0,
+                  radius: const Radius.circular(8.0),
+                  child: Flexible(
+                    child: ListView(
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                top: 24.0, left: 24, right: 24),
+                            child: Container(
+                              width: 342,
+                              height: 119,
+                              decoration: BoxDecoration(
+                                color: const Color(0xffFFEFDC),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: _image == null
+                                  ? Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: const[
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 24.0),
+                                          child: Text(
+                                            "Foto",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color(0xffFFB987),
+                                            ),
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.upload,
+                                          color: Color(0xffFFB987),
+                                        ),
+                                      ],
+                                    )
+                                  : null,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
